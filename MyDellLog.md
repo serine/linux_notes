@@ -187,14 +187,6 @@ all symlink to `/usr/local/bin`
 - use `rm -r /var/lib/apt/lists/*` to remove all of the fetched URLs and packages and then re-run `apt-get update` to get new ones
 - `sudo apt-get remove update-notifier update-notifier-common` this stops random pop ups for the update
 
-#### Reloading wifi kernel module 
-
-```BASH
-sudo lshw -C network 2>&1 | grep wireless | grep driver
-sudo modprobe -r iwlwifi
-sudo modprobe iwlwifi
-```
-
 #### Bugs
 
 - `appstreamcli refresh` [here is the fix](http://askubuntu.com/questions/774986/appstreamcli-is-overheating-my-laptop-what-is-it)
