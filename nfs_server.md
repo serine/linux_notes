@@ -9,16 +9,26 @@ There are two parts in setting the NFS server, set the server side first and the
 - `vim /etc/exports` and add these lines 
 
 ```
-/srv/nfs4	192.168.0.5(rw,sync,fsid=0,crossmnt,no_subtree_check)
-/srv/nfs4/anna	192.168.0.5(rw,sync,nohide,no_subtree_check)
+/srv/nfs4/share	192.168.0.5(rw,sync,fsid=0,no_root_squash,crossmnt,no_subtree_check)
 ```
 
 - `systemctl restart nfs-kernel-serve` start the server
 - `systemctl restart rpcbin` also needed to restart this service
 
+- `vim /etc/fstab` 
+
+```
+/mnt/home   /srv/nfs4/share none    default,bind    0   0
+```
+
 ## Client side
 
+- `mount -t nfs4` didn't work
 - `mount 192.168.0.2:/srv/nfs4/share /mnt`
+
+#### Mounting on macOs
+
+- `mount -t nfs -o resvport 192.168.0.9:/srv/nfs4/share /mnt`
 
 ## Other
 
@@ -31,6 +41,7 @@ There are two parts in setting the NFS server, set the server side first and the
 - [Digiral ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-16-04)
 - [ubuntu howto](https://help.ubuntu.com/community/SettingUpNFSHowTo)
 - [rpcbind restart](ttp://raspberrypi.stackexchange.com/questions/10403/nfs-server-not-starting-portmapper-is-not-running)
+- [macOs nfs mouting](https://www.cyberciti.biz/faq/apple-mac-osx-nfs-mount-command-tutorial/)
 
 ## Notes
 

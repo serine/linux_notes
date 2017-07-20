@@ -1,0 +1,1 @@
+- `cat /proc/net/arp` get a list of ip address

@@ -7,7 +7,6 @@
 - network card
 - sound card
 - modems
-- 
 
 In computer architecture a **bus** is a communication system that transfers data between components inside a computer or between computers. 
 
